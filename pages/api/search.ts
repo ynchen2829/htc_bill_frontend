@@ -5,33 +5,26 @@ export default async (req:any, res:any) => {
        const client = await clientPromise;
        const json = JSON.parse(req.body);
        const db = client.db("htc_bill");
+       console.log(json["keywords"]);
 
        const result = await db
             .collection("full")
-            .find({
-              $and: [
-                {
-                  tags: {
-                    $in: json["filter2"]
-                  }
-                },
+            .find(
                 {
                   $or: [
                     {
-                      status:{
-                        $in: json["filter1"]
+                      keywords:{
+                        $in: json["keywords"]
                       }
                     }
                   ]
                 }
-              ]
-            })
+            )
             .sort({ time_recent: json["time"] })
-            .skip((Number(json["id"])-1)*10)
             .toArray();
       
         res.json(result)
-        //console.log("result ",result);
+        console.log("result ",result);
   
    } catch (e) {
        console.error(e);

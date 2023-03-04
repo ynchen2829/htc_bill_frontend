@@ -44,6 +44,9 @@ export default function Home(data:any) {
   const [dead, setDead] = useState(false);
   const [law, setLaw] = useState(false);
   const [tag_status,setTag] =useState( [false,false,false,false,false,false,false,false,false,false,false]);
+  const [search,setSearch] = useState('');
+  const [time,setTime] = useState(-1);
+ 
   const tags = ["Environment", "Gender/Sexuality", "Transportation", "Taxation", "Labor", "Housing", "Health", "Elections", "Education", "Guns", "Inclusivity/Accessibility"];
 
   const handleSubmit = async () =>{
@@ -63,7 +66,8 @@ export default function Home(data:any) {
       const obj = { 
         filter1: filter1,
         filter2:filter2,
-        id:id
+        id:id,
+        time:time
       };
 
       const request = new Request("/api/filter", {
@@ -76,9 +80,28 @@ export default function Home(data:any) {
         console.log(json)
         setBills(json)
       });
-
-
   }
+
+  const handleSearch = async () =>{
+    console.log("search clicked");
+    const filter = search.split(" ");
+    setID(1);
+    const obj = { 
+      keywords: filter,
+      time: time
+    };
+
+    const request = new Request("/api/search", {
+      method: "POST",
+      body: JSON.stringify(obj),
+    });
+
+    fetch(request).then(async (response) => {
+      const json = await response.json();
+      console.log(json)
+      setBills(json)
+    });
+}
 
   return (
     <>
@@ -89,7 +112,21 @@ export default function Home(data:any) {
         <link rel="icon" href="/favicon.ico" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,700,0,200" />      </Head>
       <Navbar></Navbar>
-      <SearchBar></SearchBar>
+      {/* Search bar */}
+      <div className='block items-center flex-wrap bg-blue-400 p-3 '>
+            <div className="flex w-1/2 m-auto border border-purple-200 rounded">
+                <input
+                    onChange={(e)=>{setSearch(e.target.value)}}
+                    type="text"
+                    className="block w-full px-4 py-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                    placeholder="Search for key words..."
+                />
+                <button onClick={handleSearch}className="px-4 text-white bg-purple-600 border-l rounded ">
+                    Search
+                </button>
+            </div>
+        </div>
+      {/* side bar */}
       <aside className="absolute inline-block z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0">
       <div>
     <button data-drawer-target="default-sidebar" data-drawer-toggle="default-sidebar" aria-controls="default-sidebar" type="button" className="inline-flex items-center p-2 mt-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
@@ -103,7 +140,17 @@ export default function Home(data:any) {
     <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
         <ul className="space-y-2">
             <li>
-                <a href="#" className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+            <label className="relative inline-flex items-center cursor-pointer">
+            <input type="checkbox" onClick={()=>{setTime(-time)}} value="" className="sr-only peer"></input>
+            <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+            {time == -1 ? 
+            <span className="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">Newest</span> 
+            :
+            <span className="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">Oldest</span> }
+            </label>
+            </li>
+            <li>
+                <a className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                 <svg aria-hidden="true" className="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd"></path></svg>
                 <span className="flex-1 ml-3 whitespace-nowrap">Bill Status</span>
                 </a>
@@ -127,21 +174,20 @@ export default function Home(data:any) {
                 </div>
             </li>
             <li>
-                <a href="#" className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                <a className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                 <svg aria-hidden="true" className="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
                 <span className="flex-1 ml-3 whitespace-nowrap">Tags</span>
                   </a>
             </li>
             {tags.map((item,index) => (
                 <li>
-                        <label className="relative inline-flex items-center cursor-pointer">
-                        <input onClick={() => {
+                    <div className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                      <input onClick={() => {
                           let copy = [...tag_status]
                           copy[index] = !copy[index]
-                          setTag(copy)}} type="checkbox" value="" className="sr-only peer"></input>
-                        <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-600 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
-                        <span className="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">{item}</span>
-                        </label>
+                          setTag(copy)}} id="default-checkbox" type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"></input>
+                      <label htmlFor="default-checkbox" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{item}</label>
+                    </div>
                 </li>
             ))}
 
