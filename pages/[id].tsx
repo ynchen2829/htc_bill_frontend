@@ -48,7 +48,7 @@ export default function Home(data:any) {
         <meta name="description" content="Home page" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
-      </Head>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,700,0,200" />      </Head>
       <Navbar></Navbar>
       <SearchBar></SearchBar>
       <aside className="absolute inline-block z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0">

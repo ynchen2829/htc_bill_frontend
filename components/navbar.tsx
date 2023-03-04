@@ -24,7 +24,7 @@ export default function Navbar(props:any){
             </span>   
         </Link>
 
-        <Link href='/info' className = 'inline-flex items-center py-2 px-4 mr-4 float-right'>
+        <Link href='/learn' className = 'inline-flex items-center py-2 px-4 mr-4 float-right'>
             <span className='text-xl text-white font-bold uppercase tracking-wide'>
                 Learn
             </span>              
