@@ -3,6 +3,7 @@ import clientPromise from '@/lib/mongodb'
 import Sidebar from '@/components/sidebar';
 import Navbar from '@/components/navbar';
 import Card from '@/components/card';
+import SearchBar from '@/components/searchbar';
 
 export async function getServerSideProps(context:any) {
   const id = context.query;
@@ -49,6 +50,7 @@ export default function Home(data:any) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Navbar></Navbar>
+      <SearchBar></SearchBar>
       <aside className="absolute inline-block z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0">
         <Sidebar></Sidebar>
       </aside>
