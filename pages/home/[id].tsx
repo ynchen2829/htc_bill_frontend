@@ -5,7 +5,7 @@ import Card from '@/components/card';
 
 export async function getServerSideProps(context:any) {
   const id = context.query;
-  console.log("server id ", id);
+  const id_num = Number(id["id"]);
   try {
       const client = await clientPromise;
       const db = client.db("htc_bill");
@@ -13,15 +13,20 @@ export async function getServerSideProps(context:any) {
           .collection("full")
           .find({})
           .sort({ time_recent: 1 })
-          .skip((id-1)*20)
+          .skip((id_num-1)*20)
           .limit(20)
           .toArray();
+      const limit = (await db
+          .collection("full")
+          .count())/20;
+
 
       return {
           props: { 
             data: [
               JSON.parse(JSON.stringify(bills)),
-              id]
+              id,
+              limit]
           },
       };
   } catch (e) {
@@ -32,6 +37,7 @@ export async function getServerSideProps(context:any) {
 export default function Home(data:any) {
   let bills = data["data"][0];
   let id = data["data"][1];
+  let limit = data["data"][2];
   return (
     <>
       <Head>
@@ -44,7 +50,7 @@ export default function Home(data:any) {
         <Sidebar></Sidebar>
       </aside>
         <div className="justify-center m-5 p-4 sm:ml-64">
-          <div className="grid grid-cols-4 text-neutral-600 gap-8">
+          <div className="grid grid-cols-1 text-neutral-600 gap-8">
             {bills.map((item:any, index:any) => (
               <div key={index}>
                 <Card bill = {item}></Card>
@@ -56,13 +62,13 @@ export default function Home(data:any) {
         <nav aria-label="Page navigation example">
           <ul className="inline-flex -space-x-px">
             <li>
-              <a href="#" className="px-3 py-2 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Previous</a>
+              <a href={id["id"]==1 ? "1" : String(Number(id["id"])-1)} className="px-3 py-2 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Previous</a>
             </li>
             <li>
-              <a href="#" aria-current="page" className="px-3 py-2 text-blue-600 border border-gray-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white">{id["id"]}</a>
+              <a href={id["id"]} aria-current="page" className="px-3 py-2 text-blue-600 border border-gray-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white">{id["id"]}</a>
             </li>
             <li>
-              <a href="#" className="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Next</a>
+              <a href={id["id"]==limit ? limit : String(Number(id["id"])+1)} className="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Next</a>
             </li>
           </ul>
         </nav>
