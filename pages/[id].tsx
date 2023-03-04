@@ -54,11 +54,7 @@ export default function Home(data:any) {
       <aside className="absolute inline-block z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0">
         <Sidebar></Sidebar>
       </aside>
-<<<<<<< HEAD:pages/home/[id].tsx
         <div className="inline-block right-0 justify-center m-5 p-4 sm:ml-64">
-=======
-        <div className="relative inline-block right-0 justify-center m-5 p-4 sm:ml-64">
->>>>>>> 7bf4501 (save my changes):pages/[id].tsx
           <div className="grid grid-cols-1 text-neutral-600 gap-8">
             {bills.map((item:any, index:any) => (
               <div key={index}>
@@ -67,12 +63,7 @@ export default function Home(data:any) {
             ))}
           </div>
         </div>
-<<<<<<< HEAD:pages/home/[id].tsx
       <footer className="md:flex justify-center p-4">
-=======
-      
-      <footer className="md:flex justify-center m-4">
->>>>>>> 7bf4501 (save my changes):pages/[id].tsx
         <nav aria-label="Page navigation example">
           <ul className="inline-flex -space-x-px">
             <li>
