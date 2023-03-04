@@ -5,7 +5,7 @@ import styles from '@/styles/Hero.module.css'
 
 const inter = Inter({ subsets: ['latin'] })
 
-export default function Hero() {
+export default function Learn() {
   return (
     <>
       <Head>

@@ -33,9 +33,9 @@ export default function Hero() {
             </p>
           </Link>
 
-          <Link href="/info" className={styles.card}>
+          <Link href="/learn" className={styles.card}>
             <h2 className={inter.className}>
-              Info <span>-&gt;</span>
+              Learn <span>-&gt;</span>
             </h2>
             <p className={inter.className}>
               Stay up to date with new bills&nbsp;!
