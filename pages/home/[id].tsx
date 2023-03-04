@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import clientPromise from '@/lib/mongodb'
 import Sidebar from '@/components/sidebar';
+import Navbar from '@/components/navbar';
 import Card from '@/components/card';
 
 export async function getServerSideProps(context:any) {
@@ -47,10 +48,11 @@ export default function Home(data:any) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <aside className="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0">
+      <Navbar></Navbar>
+      <aside className="sticky inline-block left-0 top-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0">
         <Sidebar></Sidebar>
       </aside>
-        <div className="justify-center m-5 p-4 sm:ml-64">
+        <div className="absolute inline-block right-0 justify-center m-5 p-4 sm:ml-64">
           <div className="grid grid-cols-1 text-neutral-600 gap-8">
             {bills.map((item:any, index:any) => (
               <div key={index}>
@@ -59,6 +61,7 @@ export default function Home(data:any) {
             ))}
           </div>
         </div>
+      
       <footer className="md:flex justify-center p-4">
         <nav aria-label="Page navigation example">
           <ul className="inline-flex -space-x-px">
