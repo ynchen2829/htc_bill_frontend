@@ -22,7 +22,7 @@ export default function Hero() {
 
         <div className={styles.grid}>
           <Link
-            href="/home/0"
+            href="/home/1"
             className={styles.card}
           >
             <h2 className={inter.className}>
