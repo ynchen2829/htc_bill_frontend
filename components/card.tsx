@@ -34,7 +34,8 @@ export default function Card(bill:any){
                 <span className="material-symbols-outlined float-right text-5xl">
                     double_arrow
                 </span>
-                <p>{content["tags"].join(" ")}</p>
+
+                {/* <p>{content["tags"].join(" ")}</p> */}
             </a> 
     </div>
     );
