@@ -49,10 +49,10 @@ export default function Home(data:any) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Navbar></Navbar>
-      <aside className="sticky inline-block left-0 top-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0">
+      <aside className="absolute inline-block z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0">
         <Sidebar></Sidebar>
       </aside>
-        <div className="absolute inline-block right-0 justify-center m-5 p-4 sm:ml-64">
+        <div className="inline-block right-0 justify-center m-5 p-4 sm:ml-64">
           <div className="grid grid-cols-1 text-neutral-600 gap-8">
             {bills.map((item:any, index:any) => (
               <div key={index}>
@@ -61,7 +61,6 @@ export default function Home(data:any) {
             ))}
           </div>
         </div>
-      
       <footer className="md:flex justify-center p-4">
         <nav aria-label="Page navigation example">
           <ul className="inline-flex -space-x-px">

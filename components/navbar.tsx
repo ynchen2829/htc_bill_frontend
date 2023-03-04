@@ -4,7 +4,7 @@ import Link from 'next/link';
 export default function Navbar(props:any){
     return (
     <>
-      <nav className='block items-center flex-wrap bg-green-300 p-3 ' >
+      <nav className='block items-center flex-wrap bg-blue-400 p-3 ' >
         <Link href='/' className='inline-flex items-center p-2 mr-4 aligh-right'>
             <svg
               viewBox='0 0 24 24'
