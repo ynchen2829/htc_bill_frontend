@@ -51,11 +51,17 @@ export default function Bill(data:any){
                 </div>
 
                 <div className="my-8 flex-auto gap-1">
-                {Number(progress) == 0 ?
-                    <div className="text-lg font-bold text-gray-800 dark:text-gray-400 first-letter:font-bold first-letter:text-gray-900 dark:first-letter:text-gray-100"> Status : -- </div> :
-                    <div className="text-lg font-bold text-gray-800 dark:text-gray-400 first-letter:font-bold first-letter:text-gray-900 dark:first-letter:text-gray-100"> Status : {status[Number(bill["stage"])]} </div>
+                {
+                (() => {
+                    if (Number(progress) == 0)
+                        return <div className="text-lg font-bold text-gray-800 dark:text-gray-400 first-letter:font-bold first-letter:text-gray-900 dark:first-letter:text-gray-100"> Status : -- </div>
+                    if (Number(progress) == 7)
+                        return <div className="text-lg font-bold text-gray-800 dark:text-gray-400 first-letter:font-bold first-letter:text-gray-900 dark:first-letter:text-gray-100"> Status : {status[2]} </div>
+                    else (Number(progress) > 0 && Number(progress) < 7)
+                        return <div className="text-lg font-bold text-gray-800 dark:text-gray-400 first-letter:font-bold first-letter:text-gray-900 dark:first-letter:text-gray-100"> Status : {status[1]} </div>
+                })()
                 }
-                    
+
                     <div className="text-lg font-bold text-gray-800 dark:text-gray-400 first-letter:font-bold first-letter:text-gray-900 dark:first-letter:text-gray-100"> Author : {bill["author"]}</div>
                     <div className="text-lg font-bold text-gray-800 dark:text-gray-400 first-letter:font-bold first-letter:text-gray-900 dark:first-letter:text-gray-100"> Last Updated : {bill["time_recent"]}</div>
                     
