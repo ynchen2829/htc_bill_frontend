@@ -22,7 +22,6 @@ export default function Foot(props:any){
             </li>
             
         </ul>
-        
       </div>
     </>
   );

@@ -11,24 +11,10 @@ export default function Hero() {
     return (
       <>
         <Head>
-<<<<<<< Updated upstream
-          <title>Contact</title>
-          <meta name="description" content="Contact" />
-          <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <link rel="icon" href="/Debrief_favicon.svg" />
-        </Head>
-        <Navbar></Navbar>
-        <main className={styles.main}>
-          <div className={styles.center +" bg-green-200"} style={{margin:'auto'}}>
-            <h1>~~~Get in contact with new legislation~~~</h1>
-          </div>
-  
-        </main>
-=======
         <title>Info</title>
         <meta name="description" content="Info page" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/Debrief_favicon.png" />
       </Head>
       <Navbar></Navbar>
       <section className="bg-gradient-to-r from-blue-100 via-blue-300 to-blue-500 flex h-200">
@@ -42,7 +28,6 @@ export default function Hero() {
 
       </main>
       <Foot></Foot>
->>>>>>> Stashed changes
       </>
     )
   }

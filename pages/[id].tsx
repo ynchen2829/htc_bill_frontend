@@ -3,7 +3,6 @@ import Navbar from '@/components/navbar';
 import Card from '@/components/card';
 import { useState } from 'react';
 import clientPromise from '@/lib/mongodb';
-import SearchBar from '@/components/searchbar';
 import Foot from '@/components/footerbar'
 
 export async function getServerSideProps(context:any) {
@@ -110,8 +109,8 @@ export default function Home(data:any) {
         <title>Home</title>
         <meta name="description" content="Home page" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/Debrief_favicon.svg" />
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,700,0,200" />      </Head>
+        <link rel="icon" href="/Debrief_favicon.png" />
+      </Head>
       <Navbar></Navbar>
       {/* Search bar */}
       <div className='block items-center flex-wrap bg-lime-50 p-3 '>
@@ -181,7 +180,7 @@ export default function Home(data:any) {
                   </a>
             </li>
             {tags.map((item,index) => (
-                <li>
+                <li key={item}>
                     <div className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                       <input onClick={() => {
                           let copy = [...tag_status]
