@@ -3,7 +3,6 @@ import Navbar from '@/components/navbar';
 import Card from '@/components/card';
 import { useState } from 'react';
 import clientPromise from '@/lib/mongodb';
-import { Josefin_Sans } from 'next/font/google';
 
 export async function getServerSideProps(context:any) {
   const id = context.query;
