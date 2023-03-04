@@ -109,11 +109,11 @@ export default function Home(data:any) {
         <title>Home</title>
         <meta name="description" content="Home page" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/Debrief_favicon.svg" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,700,0,200" />      </Head>
       <Navbar></Navbar>
       {/* Search bar */}
-      <div className='block items-center flex-wrap bg-blue-400 p-3 '>
+      <div className='block items-center flex-wrap bg-lime-50 p-3 '>
             <div className="flex w-1/2 m-auto border border-purple-200 rounded">
                 <input
                     onChange={(e)=>{setSearch(e.target.value)}}

@@ -2,7 +2,7 @@ import React from "react";
 
 export default function SearchBar() {
     return (
-        <div className='block items-center flex-wrap bg-blue-400 p-3 '>
+        <div className='block items-center flex-wrap bg-gradient-to-r from-blue-100 via-blue-300 to-blue-500 p-3 '>
             <div className="flex w-1/2 m-auto border border-purple-200 rounded">
                 <input
                     type="text"

@@ -13,7 +13,7 @@ export default function Hero() {
         <title>Contact</title>
         <meta name="description" content="Contact" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/Debrief_favicon.svg" />
       </Head>
       <Navbar></Navbar>
       <main className={styles.main}>
