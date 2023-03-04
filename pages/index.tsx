@@ -1,13 +1,11 @@
 import Head from 'next/head'
-import { Inter } from 'next/font/google'
 import Image from 'next/image'
 import styles from '@/styles/Hero.module.css'
-
-const inter = Inter({ subsets: ['latin'] })
+import Link from 'next/link'
 
 export default function Hero() {
   return (
-    <a href="/1">
+    <Link href="/1">
       <section>
       <div className="bg-blue-400 w-full h-1/2 absolute top-0"></div>
       <div className="bg-neutral-100 w-full h-1/2 absolute bottom-0"></div>
@@ -26,7 +24,7 @@ export default function Hero() {
       </main>
       </div>
     </section>
-    </a>
+    </Link>
 
   )
 }

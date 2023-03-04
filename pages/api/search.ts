@@ -1,6 +1,6 @@
 import clientPromise from "../../lib/mongodb";
 
-export default async (req:any, res:any) => {
+const search = async (req:any, res:any) => {
    try {
        const client = await clientPromise;
        const json = JSON.parse(req.body);
@@ -30,3 +30,5 @@ export default async (req:any, res:any) => {
        console.error(e);
    }
 }
+
+export default search
