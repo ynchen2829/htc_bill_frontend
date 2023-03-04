@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 
 export default function Card(bill:any){
     let content = bill["bill"]
-    console.log("in card ",bill);
+    //console.log("in card ",bill);
     const router = useRouter();
     const handleClick = async (e:any) => {
         e.preventDefault();
