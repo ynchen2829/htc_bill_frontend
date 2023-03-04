@@ -13,12 +13,12 @@ export async function getServerSideProps(context:any) {
           .collection("full")
           .find({})
           .sort({ time_recent: 1 })
-          .skip((id_num-1)*20)
-          .limit(20)
+          .skip((id_num-1)*10)
+          .limit(10)
           .toArray();
       const limit = (await db
           .collection("full")
-          .count())/20;
+          .count())/10;
 
 
       return {
@@ -37,7 +37,8 @@ export async function getServerSideProps(context:any) {
 export default function Home(data:any) {
   let bills = data["data"][0];
   let id = data["data"][1];
-  let limit = data["data"][2];
+  let limit = Math.ceil(Number(data["data"][2]));
+  console.log(limit);
   return (
     <>
       <Head>
@@ -68,7 +69,7 @@ export default function Home(data:any) {
               <a href={id["id"]} aria-current="page" className="px-3 py-2 text-blue-600 border border-gray-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white">{id["id"]}</a>
             </li>
             <li>
-              <a href={id["id"]==limit ? limit : String(Number(id["id"])+1)} className="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Next</a>
+              <a href={Number(id["id"])==limit ? String(limit) : String(Number(id["id"])+1)} className="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Next</a>
             </li>
           </ul>
         </nav>
