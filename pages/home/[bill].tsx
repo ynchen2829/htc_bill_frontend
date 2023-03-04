@@ -1,5 +1,8 @@
 import clientPromise from '@/lib/mongodb'
 import Navbar from '@/components/navbar';
+import Foot from '@/components/footerbar'
+import Link from 'next/link';
+
 
 export async function getServerSideProps(context:any){
     const name = context.query["bill"];
@@ -37,7 +40,7 @@ export default function Bill(data:any){
             <div className='m-12 pr-64'>
                 <h1 className="mb-4 text-3xl font-bold leading-none tracking-tight text-gray-900 dark:text-white">{bill["title"]}</h1>
 
-                <a href={bill["source"]} className="inline-flex items-center justify-center p-5 text-base font-medium text-blue-800 rounded-lg bg-blue-50 hover:text-blue-900 hover:bg-blue-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-white">
+                <a href={bill["source"]} target="_blank" className="inline-flex items-center justify-center p-5 text-base font-medium text-blue-800 rounded-lg bg-blue-50 hover:text-blue-900 hover:bg-blue-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-white">
                     <span className="w-full">{bill["name"]}</span>
                     <svg aria-hidden="true" className="w-6 h-6 ml-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                 </a> 
@@ -69,6 +72,28 @@ export default function Bill(data:any){
 
                 <p className="my-8 tx-lg font-light text-gray-500 dark:text-gray-400 first-letter:text-5xl first-letter:font-bold first-letter:text-gray-900 dark:first-letter:text-gray-100 first-letter:mr-3 first-letter:float-left">{bill["description"]}</p>
             </div>
+            <div className='block absolute w-full bottom-0 items-center flex-wrap bg-blue-400 p-3 ' >
+                <ul>
+                    <li>
+                        <Link href='/resources' className = ''>
+                            <span className=''>
+                                Resources
+                            </span>   
+                        </Link>
+                    </li>
+                    
+                    <li>
+                        <Link href='/team' className = ''>
+                            <span className=''>
+                                Team
+                            </span>   
+                        </Link>
+                    </li>
+                    
+                </ul>
+        
+            </div>
         </div>
+
     );
 }

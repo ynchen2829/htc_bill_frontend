@@ -4,6 +4,7 @@ import Card from '@/components/card';
 import { useState } from 'react';
 import clientPromise from '@/lib/mongodb';
 import SearchBar from '@/components/searchbar';
+import Foot from '@/components/footerbar'
 
 export async function getServerSideProps(context:any) {
   const id = context.query;
@@ -223,6 +224,7 @@ export default function Home(data:any) {
           </ul>
         </nav>
       </footer>
+      <Foot></Foot>
     </>
   )
 }
