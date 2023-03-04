@@ -15,7 +15,7 @@ export default function Card(bill:any){
     }
 
     return(
-        <div onClick={handleClick} className="flex overflow-hidden flex-direction-row items-center justify-start max-w-full p-0 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">     
+        <div onClick={handleClick} className="flex overflow-hidden flex-direction-row items-center justify-start w-full p-0 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">     
             {
                 (() => {
                     if (content["status"] == 2)

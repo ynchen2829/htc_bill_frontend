@@ -3,6 +3,7 @@ import Navbar from '@/components/navbar';
 import Card from '@/components/card';
 import { useState } from 'react';
 import clientPromise from '@/lib/mongodb';
+import SearchBar from '@/components/searchbar';
 
 export async function getServerSideProps(context:any) {
   const id = context.query;
@@ -88,6 +89,7 @@ export default function Home(data:any) {
         <link rel="icon" href="/favicon.ico" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,700,0,200" />      </Head>
       <Navbar></Navbar>
+      <SearchBar></SearchBar>
       <aside className="absolute inline-block z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0">
       <div>
     <button data-drawer-target="default-sidebar" data-drawer-toggle="default-sidebar" aria-controls="default-sidebar" type="button" className="inline-flex items-center p-2 mt-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
@@ -151,7 +153,7 @@ export default function Home(data:any) {
     </aside>
     </div>
       </aside>
-        <div className="inline-block right-0 justify-center m-5 p-4 sm:ml-64">
+        <div className="block right-0 justify-center m-5 p-4 sm:ml-64">
           <div className="grid grid-cols-1 text-neutral-600 gap-8">
             {bills.map((item:any, index:any) => (
               <div key={index}>
