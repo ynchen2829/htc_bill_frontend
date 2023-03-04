@@ -31,7 +31,7 @@ export default async (req:any, res:any) => {
             .toArray();
       
         res.json(result)
-        console.log("result ",result);
+        //console.log("result ",result);
   
    } catch (e) {
        console.error(e);

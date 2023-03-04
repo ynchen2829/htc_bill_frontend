@@ -36,7 +36,7 @@ export default function Card(bill:any){
                     double_arrow
                 </span>
 
-                <p>{content["tags"]}</p>
+                <p>{content["tags"].join(" ")}</p>
             </a> 
     </div>
     );
